@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+<body>
+    <section class="main-form">
+        <div class="header-form">
+                <h1>Создай новый Аккаунт</h1>
+                <h2>Создание нового аккаунта на сайте История-Волоколамса.рф</h2>
+        </div>
+        <form class="form register">
+                <div class="img_user">
+                    <img src="../img/userImage.png" alt="" id="profile-pic">
+                    <label for="input-file">Загрузите картинку</label>
+                    <input type="file" accept="image/jpeg, image/png, image/jpg, image/webp", id="input-file">
+                </div>
+                <div class="NameSurname">
+                    <div class="Name inputbox litle">
+                        <i class="fa-solid fa-address-book"></i>
+                        <input type="text" class="firstnameInput" required>
+                        <label for="">Имя</label>
+                    </div>
+                    <div class="Surname inputbox litle">
+                        <i class="fa-solid fa-address-book"></i>
+                        <input type="text" class="lastnameInput" required>
+                        <label for="">Фамилия</label>
+                    </div>
+                </div>
+                <div class="Login inputbox">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" class="loginInput" required>
+                    <label for="">Логин</label>
+                </div>
+                <div class="Password inputbox">
+                    <i class="fa-solid fa-lock passwordbtn"></i>
+                    <input type="password" class="PasswordInput" required>
+                    <label for="">Пароль</label>
+                </div>
+                <div class="PasswordAgain inputbox">
+                    <i class="fa-solid fa-lock passwordbtn"></i>
+                    <input type="password" class="PasswordConfirmInput" required>
+                    <label for="">Повторите пароль</label>
+                </div>
+                <div class="validator">Ошибка Регистрация</div>
+
+                <button type="submit" class="register_submit">Зарегистрироваться</button>
+        </form>
+        <a href="auth.html">Есть аккаунт? Жми сюда</a>
+    </section>
+    <script src="https://kit.fontawesome.com/c63fee7330.js" crossorigin="anonymous"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
