@@ -16,6 +16,10 @@ const connection = mysql.createConnection({
     password: '123123123',
     database: 'datausers'
 });
+const query = `SELECT * FROM users;`;
+connection.query(query, (error, results) => {
+  console.log(results);
+});
 
 app.get('/', homePage);
 function homePage(req, res) {
