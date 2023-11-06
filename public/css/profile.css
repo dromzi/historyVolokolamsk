@@ -139,3 +139,42 @@ nav{
 .shadow-none {
     box-shadow: none!important;
 }
+
+#myModal{
+    background: rgba(0, 0, 0, 0.466)
+}
+
+.modal-content{
+    background: #14181A;
+    color: rgb(255, 255, 255);
+}
+
+.n0{
+    position: fixed;
+}
+
+.n1{
+    background: linear-gradient( rgba(0, 0, 0, 0.342), rgba(0, 0, 0, 0.342)), url(../img/n1.png);
+    background-position: center;    
+    background-repeat: no-repeat;
+}
+.n2{
+    background: linear-gradient( rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.74)), url();
+    background-position: center;    
+    background-repeat: no-repeat;
+}
+.n3{
+    background: linear-gradient( rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.74)), url();
+    background-position: center;    
+    background-repeat: no-repeat;
+}
+.n4{
+    background: linear-gradient( rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.74)), url();
+    background-position: center;    
+    background-repeat: no-repeat;
+}
+.n5{
+    background: linear-gradient( rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.74));
+    background-position: center;    
+    background-repeat: no-repeat;
+}

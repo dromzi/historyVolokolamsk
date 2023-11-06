@@ -90,9 +90,3 @@ inputFile.onchange = function () {
     profilePic.src = URL.createObjectURL(inputFile.files[0])
 }
 
-var myModal = document.getElementById('myModal')
-var myInput = document.getElementById('myInput')
-
-myModal.addEventListener('shown.bs.modal', function () {
-  myInput.focus()
-})
