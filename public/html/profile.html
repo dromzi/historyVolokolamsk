@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/profile.css">
 
-    <title>сука</title>
+    <title>Профиль</title>
 </head>
 <body>
     <nav class="nav">
@@ -22,7 +22,7 @@
         </ul>
         <div class="profile user">
             <div class="userName">Сын собаки</div>
-            <img src="pic.png" class="imgUsers" alt="">
+            <img src="../img/pic.png" class="imgUsers" alt="">
         </div>
     </nav>
     <section>
@@ -38,7 +38,7 @@
                             <div class="mt-3">
                               <h4>Сын собаки</h4>
                               <button class="btn btn-outline-danger">Изменить аккаунт</button>
-                              <button class="btn btn-danger" id="show-dialog-btn">Удалить аккаунт</button>
+                              <button class="btn btn-danger" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить аккаунт</button>
 
                             </div>
                           </div>
@@ -125,11 +125,24 @@
                 </div>
             </div>
     </section>
-    <dialog id="my-dialog">
-      <p>Это простое диалоговое окно.</p>
-      <button id="close-dialog-btn">Закрыть</button>
-    </dialog>  
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Заголовок модального окна</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            <button type="button" class="btn btn-primary">Понял</button>
+          </div>
+        </div>
+      </div>
+    </div>
       <script src="https://kit.fontawesome.com/c63fee7330.js" crossorigin="anonymous"></script>
-      <script src="script.js"></script>
+      <script src="../js/main.js"></script>
 </body>
 </html>
