@@ -152,7 +152,21 @@ nav{
 .n0{
     position: fixed;
 }
-
+.postUser{
+    border-radius: 10px;
+    border: 1px solid white;
+    height: 10px;
+    width: 60vw;
+    margin-left: 20vw;
+    margin-top: 10px;
+    padding: 10px;
+}
+.posts-field{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1;
+    justify-content: center;
+}
 .n1{
     background: linear-gradient( rgba(0, 0, 0, 0.342), rgba(0, 0, 0, 0.342)), url(../img/459bd9f3d13a1ca2eba7054c86e2c5a4.jpeg);
     background-position: center;    
