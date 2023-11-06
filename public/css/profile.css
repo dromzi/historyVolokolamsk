@@ -40,15 +40,16 @@ i{
     color: white;
 }
 nav{
-    width: 95%;
+    width: 95vw;
     display: flex;
     justify-content: space-between; 
     align-items: center;
     padding-bottom: 20px;  
+    margin-left: 2.5vw;
 }
 .nav_list{
     display: flex;
-    margin-left: 85px;
+    margin-left: 1vw;
     gap: 45px;
     justify-content: space-between;
     align-items: center;
@@ -134,7 +135,7 @@ nav{
     background-color: #e2e8f0;
 }
 .h-100 {
-    height: 100%!important;
+    height: 100vh!important;
 }
 .shadow-none {
     box-shadow: none!important;
