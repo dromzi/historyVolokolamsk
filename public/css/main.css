@@ -41,9 +41,6 @@ body{
 .main-auth .inputbox{
     width: 300px;
 }
-.main-auth .register{
-    
-}
 .img_user{
     display: flex;
     flex-direction: column;
