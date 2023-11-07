@@ -40,15 +40,16 @@ i{
     color: white;
 }
 nav{
-    width: 95%;
+    width: 95vw;
     display: flex;
     justify-content: space-between; 
     align-items: center;
     padding-bottom: 20px;  
+    margin-left: 2.5vw;
 }
 .nav_list{
     display: flex;
-    margin-left: 85px;
+    margin-left: 1vw;
     gap: 45px;
     justify-content: space-between;
     align-items: center;
@@ -134,7 +135,7 @@ nav{
     background-color: #e2e8f0;
 }
 .h-100 {
-    height: 100%!important;
+    height: 100vh!important;
 }
 .shadow-none {
     box-shadow: none!important;
@@ -152,7 +153,21 @@ nav{
 .n0{
     position: fixed;
 }
-
+.postUser{
+    border-radius: 10px;
+    border: 1px solid white;
+    height: 10px;
+    width: 60vw;
+    margin-left: 20vw;
+    margin-top: 10px;
+    padding: 10px;
+}
+.posts-field{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1;
+    justify-content: center;
+}
 .n1{
     background: linear-gradient( rgba(0, 0, 0, 0.342), rgba(0, 0, 0, 0.342)), url(../img/459bd9f3d13a1ca2eba7054c86e2c5a4.jpeg);
     background-position: center;    

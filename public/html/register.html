@@ -29,11 +29,11 @@
                 <h1>Создай новый Аккаунт</h1>
                 <h2>Создание нового аккаунта на сайте История-Волоколамса.рф</h2>
         </div>
-        <form class="form register">
+        <form class="form register" action="/upload" method="post" enctype="multipart/form-data">
                 <div class="img_user">
                     <img src="../img/userImage.png" alt="" id="profile-pic">
                     <label for="input-file">Загрузите картинку</label>
-                    <input type="file" accept="image/jpeg, image/png, image/jpg, image/webp", id="input-file">
+                    <input type="file" accept="image/jpeg, image/png, image/jpg, image/webp" id="input-file" name="filedata" >
                 </div>
                 <div class="NameSurname">
                     <div class="Name inputbox litle">
