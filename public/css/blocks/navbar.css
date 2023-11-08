@@ -1,0 +1,44 @@
+@import url(mobile-nav-button.css);
+@import url(mobile-nav.css);
+.header {
+    padding-top: 17px;
+    padding-bottom: 17px;
+}
+.header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header-logo {
+    width: 70px;
+    filter: brightness(150%);
+}
+.header-nav {
+    font-weight: 500;
+}
+.header-nav ul{
+    display: flex;
+    gap: 70px;
+}
+.header-nav a{
+    transition: filter .2s ease;
+}
+.header-nav a:hover{
+    filter: brightness(50%);
+}
+
+.btn{
+    padding: 10px 30px;
+    background-color: #1e9144;
+    border-radius: 4px;
+    transition: filter .2s ease;
+}
+.btn:hover{
+    filter: brightness(50%)
+}
+
+@media (max-width: 844px) {
+    .header-nav, .header-login{
+        display: none;
+    }
+}

@@ -4,36 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/blocks/formRegister.css">
 </head>
 <body>
-    <nav class="nav">
-        <ul class="nav_list">
-            <a href="#" class="logo">
-            <img src="../img/logo.png" alt="">
-            </a>
-            <li class="nav_listitem"><a href="../index.html" class="nav_listlink nav_listlink--active">Главная</a></li>
-            <li class="nav_listitem"><a href="attractions.html" class="nav_listlink">Достопримечательности</a></li>
-            <li class="nav_listitem"><a href="posts.html" class="nav_listlink">Посты</a></li>
-            <li class="nav_listitem"><a href="photo.html" class="nav_listlink">Фотогалерея</a></li>
-        </ul>
-        <a href="auth.html" class="profile">
-            <div>Войти</div>
-            <i class="fa-solid fa-circle-user"></i>
-        </a>
-    </nav>
+    <header class="header">
+        <div class="container">
+            <div class="header-row">
+                <div class="header-logo">
+                   <a href="../index.html"><img src="../img/logo.png" alt="Logo"> </a>
+                </div>
+                <nav class="header-nav">
+                    <ul>
+                        <li><a href="../index.html">Главная</a></li>
+                        <li><a href="attractions.html">Достопримечательности</a></li>
+                        <li><a href="gallery.html">Галерея</a></li>
+                        <li><a href="posts.html">Посты</a></li>
+                    </ul>
+                </nav>
+                <div class="header-login">
+                    <a href="auth.html" class="btn">Войти</i></a>
+                </div>
+                <button type="button" class="mobile-nav-button">
+                    <span class="mobile-nav-button__icon"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="mobile-nav">
+        <a href="../index.html"><img class="mobile-logo" src="../img/logo.png" alt="logo"></a>
+        <nav class="mobile-nav-list">
+            <ul>
+                <li><a href="../index.html">Главная</a></li>
+                <li><a href="attractions.html">Достопримечательности</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="posts.html">Посты</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-login">
+            <a href="auth.html" class="btn">Войти</i></a>
+        </div>
+    </div>
     <section class="main-form">
         <div class="header-form">
                 <h1>Создай новый Аккаунт</h1>
                 <h2>Создание нового аккаунта на сайте История-Волоколамса.рф</h2>
         </div>
-        <form class="form register" action="/upload" method="post" enctype="multipart/form-data">
+        <form class="form register">
                 <div class="img_user">
                     <img src="../img/userImage.png" alt="" id="profile-pic">
                     <label for="input-file">Загрузите картинку</label>
-                    <input type="file" accept="image/jpeg, image/png, image/jpg, image/webp" id="input-file" name="filedata" >
+                    <input type="file" accept="image/jpeg, image/png, image/jpg, image/webp", id="input-file">
                 </div>
                 <div class="NameSurname">
                     <div class="Name inputbox litle">
@@ -69,6 +90,8 @@
         <a href="auth.html">Есть аккаунт? Жми сюда</a>
     </section>
     <script src="https://kit.fontawesome.com/c63fee7330.js" crossorigin="anonymous"></script>
+    <script src="../js/mobileNavbar.js"></script>
+    <script src="../js/register.js"></script>
     <script src="../js/main.js"></script>
 </body>
 </html>

@@ -86,16 +86,7 @@ input:focus, input:active,
 button:focus, button:active {
     outline: none;
 }
-.search-post:focus, .search-post:active{
-	outline: invert;
-}
-.search-post{
-	color: white;
-	border: 0.5px solid white;
-	border-radius: 10px;
-	padding: 5px;
-	width: 70vw;
-}
+
 button::-moz-focus-inner {
 	padding: 0;
 	border: 0;

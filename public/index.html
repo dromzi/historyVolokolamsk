@@ -1,29 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/profile.css">
-
     <title>Главная</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/blocks/homepage.css">
 </head>
 <body>
-    <nav class="nav">
-        <ul class="nav_list">
-            <a href="#" class="logo">
-            <img src="img/logo.png" alt="">
-            </a>
-            <li class="nav_listitem"><a href="" class="nav_listlink nav_listlink--active">Главная</a></li>
-            <li class="nav_listitem"><a href="html/attractions.html" class="nav_listlink">Достопримечательности</a></li>
-            <li class="nav_listitem"><a href="html/posts.html" class="nav_listlink">Посты</a></li>
-            <li class="nav_listitem"><a href="html/photo.html" class="nav_listlink">Фотогалерея</a></li>
-        </ul>
-        <a href="html/auth.html" class="profile">
-            <div>Войти</div>
-            <i class="fa-solid fa-circle-user"></i>
-        </a>
-    </nav>
-      <script src="https://kit.fontawesome.com/c63fee7330.js" crossorigin="anonymous"></script>
+    <header class="header">
+        <div class="container">
+            <div class="header-row">
+                <div class="header-logo">
+                   <img src="./img/logo.png" alt="Logo"> 
+                </div>
+                <nav class="header-nav">
+                    <ul>
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="./html/attractions.html">Достопримечательности</a></li>
+                        <li><a href="./html/gallery.html">Галерея</a></li>
+                        <li><a href="./html/posts.html">Посты</a></li>
+                    </ul>
+                </nav>
+                <div class="header-login">
+                    <a href="./html/auth.html" class="btn">Войти</i></a>
+                </div>
+                <button type="button" class="mobile-nav-button">
+                    <span class="mobile-nav-button__icon"></span>
+                </button>
+            </div>
+        </div>
+        <div class="container container--header">
+
+            
+            <h1>Волоколамск</h1>
+            <h3>Город Воинской Славы</h3>
+ 
+             
+         </div>
+    </header>
+    <div class="mobile-nav">
+        <img class="mobile-logo" src="./img/logo.png" alt="logo">
+        <nav class="mobile-nav-list">
+            <ul>
+                <li><a href="#">История</a></li>
+                <li><a href="./html/attractions.html">Достопримечательности</a></li>
+                <li><a href="./html/gallery.html">Галерея</a></li>
+                <li><a href="./html/posts.html">Посты</a></li>
+            </ul>
+        </nav>
+        <div class="mobile-login">
+            <a href="./html/auth.html" class="btn">Войти</i></a>
+        </div>
+    </div>
+    <main class="main">
+        <!-- Popular -->
+        <section class="section">
+         <div class="container">
+             <div class="section__header">
+                 <h2 class="title-1 h2_sect1">Достопримечательности</h2>
+                 <a href="#!" class="button-more">
+                     View all
+                     <img class="arrow" src="./img/arrow.png" alt="Arrow">
+                 </a>
+             </div>
+             <div class="section__cards section__cards--6-in-row">
+ 
+                 <article class="card">
+                     <a href="#!" class="card__link"></a>
+                     <img class="card__img" src="./img/kreml1.jpg" alt="Img">
+                     <h3 class="card__title">Волоколамский кремль</h3>
+                     <a href="#california" class="card__location">Городской вал</a>
+                 </article>
+ 
+                 <article class="card">
+                     <a href="#!" class="card__link"></a>
+                     <img class="card__img" src="./img/hram.jpg" alt="Img">
+                     <h3 class="card__title">Возмищенский храм</h3>
+                     <a href="#california" class="card__location">Возмище</a>
+                 </article>
+ 
+                 <article class="card">
+                     <a href="#!" class="card__link"></a>
+                     <img class="card__img" src="./img/hram2.jpg" alt="Img">
+                     <h3 class="card__title">Храм Покрова Пресвятой Богородицы</h3>
+                     <a href="#california" class="card__location">Улица Доватора</a>
+                 </article>
+ 
+                 <article class="card">
+                     <a href="#!" class="card__link"></a>
+                     <img class="card__img" src="./img/sobor.jpg" alt="Img">
+                     <h3 class="card__title">Воскресенский собор</h3>
+                     <a href="#california" class="card__location">Городской вал</a>
+                 </article>
+ 
+                 <article class="card">
+                     <a href="#!" class="card__link"></a>
+                     <img class="card__img" src="./img/cerkov.jpg" alt="Img">
+                     <h3 class="card__title">Церковь Рождества Христова</h3>
+                     <a href="#california" class="card__location">Городской вал</a>
+                 </article>
+ 
+                 <article class="card">
+                     <a href="#!" class="card__link"></a>
+                     <img class="card__img" src="./img/raceway.jpg" alt="Img">
+                     <h3 class="card__title">Moscow Raceway</h3>
+                     <a href="#california" class="card__location">Деревня Шелудьково</a>
+                 </article>
+             </div>
+         </div>
+     </section>
+ 
+         <!-- Hotel -->
+         <section class="section">
+             <div class="container">
+                 <div class="section__header">
+                     <h2 class="title-1">Фотогалерея</h2>
+                     <a href="#!" class="button-more">
+                         View all
+                         <img class="arrow" src="./img/arrow.png" alt="Arrow">
+                     </a>
+                 </div>
+                 <div class="section__cards section__cards--4-in-row">
+                     <article class="card">
+                         <a href="#!" class="card__link"></a>
+                         <img class="card__img card__img--hotel" src="./img/volok1.jpg" alt="Img">
+                         <h3 class="card__title card__title--hotel"></h3>
+ 
+ 
+                     </article>
+ 
+                     <article class="card">
+                         <a href="#!" class="card__link"></a>
+                         <img class="card__img card__img--hotel" src="./img/volok2.jpeg" alt="Img">
+                         <h3 class="card__title card__title--hotel"></h3>
+ 
+ 
+                     </article>
+ 
+                     <article class="card">
+                         <a href="#!" class="card__link"></a>
+                         <img class="card__img card__img--hotel" src="./img/volok3.jpg" alt="Img">
+                         <h3 class="card__title card__title--hotel"></h3>
+ 
+ 
+                     </article>
+ 
+                     <article class="card">
+                         <a href="#!" class="card__link"></a>
+                         <img class="card__img card__img--hotel" src="./img/volok4.jpg" alt="Img">
+                         <h3 class="card__title card__title--hotel"></h3>
+                     </article>
+                 </div>
+             </div>
+         </section>
+ 
+         <!-- Tips -->
+         <section class="section">
+             <div class="container">
+ 
+                 <header class="section__header">
+                     <h2 class="title-1">Посты</h2>
+                     <a href="#!" class="button-more">
+                         View all
+                         <img class="arrow" src="./img/arrow.png" alt="Arrow">
+                     </a>
+                 </header>
+ 
+                 <div class="section__cards section__cards--2-in-row">
+ 
+                     <article class="card card--wide">
+                         <a href="#!" class="card__link"></a>
+                         <img class="card__img card__img--no-margin card__img--h100" src="./img/post1.jpeg" alt="Img">
+ 
+                         <div class="card__desc">
+                             <h3 class="card__title card__title--big">Историческая справка</h3>
+                             <p class="card__text">Волоколамский край – уникальное место Подмосковья , где тесно сплетены между собой исторические вехи и памятные события родной земли...</p>
+ 
+                             <footer class="card__footer card__footer--wide">
+                                
+                                 <a href="#author" class="card__footer-link card__footer-link--author">Maria Philips</a>
+                                 
+                             </footer>
+                         </div>
+ 
+                     </article>
+ 
+                     <article class="card card--wide">
+                         <a href="#!" class="card__link"></a>
+                         <img class="card__img card__img--no-margin card__img--h100" src="./img/post2.jpg" alt="Img">
+ 
+                         <div class="card__desc">
+                             <h3 class="card__title card__title--big">Волоколамск - самый древний город Подмосковья</h3>
+                             <p class="card__text">Расположенный на западе Московской области Волоколамск не является самым туристическим городом региона да и война сильно сказалась на его облике. Однако даже после этого ему каким-то необъяснимым образом удалось сохранить и поддерживать свой колорит...</p>
+ 
+                             <footer class="card__footer card__footer--wide">
+                                 
+                                 <a href="#author" class="card__footer-link card__footer-link--author">Maria Philips</a>
+                                 
+                             </footer>
+                         </div>
+ 
+                     </article>
+ 
+ 
+                 </div>
+             </div>
+         </section>
+     </main>
+    <script src="./js/mobileNavbar.js"></script>
+    <script src="./js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+.profile{
+    background: rgb(26, 26, 26);
+    border-radius: 15px;
+    border: solid 1px rgb(54, 54, 54);
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.imgProfile{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.nameProfile{
+    font-family: 600;
+    font-size: 1.2vw;
+}
