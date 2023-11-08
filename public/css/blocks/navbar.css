@@ -37,7 +37,7 @@
     filter: brightness(50%)
 }
 
-@media (max-width: 844px) {
+@media (max-width: 900px) {
     .header-nav, .header-login{
         display: none;
     }

@@ -1,22 +1,24 @@
 .main {
-    padding: 120px 0;
+    padding: 50px 0;
     display: grid;
     gap: 70px;
 }
 .header{
-    height: 30vh;
+    height: 41vh;
 	color: #fff;
     background: linear-gradient( rgba(0, 0, 0, 0.555), #14181A ), url(../../img/fon.jpg);
 	background-size: cover;
+    background-position: center;
 }
 .container--header {
 	height: 100%;
 	display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 	flex-direction: column;
 }
 .container--header h1{
+    margin-top: 50px;
     font-size: 50px;
     font-weight: 600;
     color: rgba(255, 255, 255, 0.952);
@@ -65,6 +67,7 @@
     top: 0;
     width: 100%;
     height: 100%;
+    transition: 1s;
 }
 .card__img {
     width: 100%;
@@ -72,10 +75,13 @@
     margin-bottom: 8px;
     object-fit: cover;
     height: 80%;
+    
 }
 .card__img:hover{
     filter: brightness(50%);
+    
 }
+
 .card__title {
     color: #fff;
     font-size: 16px;
@@ -156,25 +162,26 @@
     display: flex;
     align-items: center;
     gap: 4px;
-
+    border: 2px solid;
+    border-color: rgb(22, 92, 28);
     padding: 20px;
     height: 4px;
-    background: #F6F4FF;
+    background: rgba(22, 92, 28, 0);
     border-radius: 12px;
     font-size: 16px;
-    color: #5243C2;
+    color: #dfdfdf;
 
     transition: background-color 0.2s ease-in;
 }
 
 .button-more:hover {
-    background: #dcd8f1;
+    background: rgba(29, 119, 36, 0.274);
 }
 
 .arrow{
     width: 20px;
     height: 20px;
-    color: #5243C2;
+    color: rgb(223, 223, 223);
 }
 @media (max-width: 1139px) {
 	.main {
@@ -182,7 +189,9 @@
 		padding-top: 0px;
 		padding-bottom: 40px;
 	}
-
+    .container--header{
+        justify-content: flex-start;
+    }
 	.section__header {
 		margin-bottom: 34px;
 	}
@@ -208,9 +217,13 @@
 	}
 }
 @media (max-width: 949px) {
+
 	.section__cards--2-in-row {
 		grid-template-columns: 1fr;
 	}
+    .container--header{
+        justify-content: flex-start;
+    }
 }
 @media (max-width: 640px) {
 	.section__cards--6-in-row {
@@ -219,10 +232,24 @@
 	.h2_sect1{
 		font-size: 15px !important;
 	}
+    .container--header h1{
+        margin-top: -20px;
+    }
 	.container{
 		width: 95%;
 		padding: 10px
 	}
+
+    .header{
+        height: 25vh;
+        background-size: cover;
+    }
+    .container--header h1{
+        font-size: clamp(15px, 7vw, 40px);
+    }
+    .container--header h3{
+        font-size: clamp(15px, 5vw, 20px);
+    }
 	.button-more{
 		padding: 20px 10px !important;
 		font-size: 13px;

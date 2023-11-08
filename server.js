@@ -5,6 +5,7 @@ const multer = require('multer');
 const uuid = require('uuid').v4;
 const path = require('path');
 const bcrypt = require('bcrypt');
+const fs = require('fs');
 const { log } = require('console');
 
 const app = express();
@@ -64,13 +65,36 @@ app.post('/auth', async (req, res) => {
         const userPassword = resultUser[0][0].password
         const validPassword = await bcrypt.compare(password, userPassword);
         if (validPassword) {
-            res.status(200).send('Пользователь авторизирован');
+            const id = resultUser[0][0].Id
+            res.status(200).json({
+              ok: true,
+              id: id        
+            });
         } else{
             res.status(400).send('Неправильный пароль'); 
         }
       } else{
         return res.status(400).send('Пользователь не найден'); 
     }
+});
+app.get('/profile/:id', async (req, res) => {
+
+  // const userId = req.params.id;
+
+  // const user = await pool.query('SELECT * FROM users WHERE id = ?', [userId]);
+
+  // const html = fs.readFileSync(__dirname + '/profile.html', 'utf8');
+
+
+
+  // const userId = req.params.id;
+
+  
+  // const html = template({user}); 
+
+
+  // res.send(html);
+
 });
 
 app.listen(port, () => {

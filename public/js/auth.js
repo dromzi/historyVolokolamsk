@@ -34,7 +34,9 @@ form.addEventListener('submit', async event => {
     });
 
     if (response.ok) {
-      localStorage.setItem('isAuthorized', 'true');
+      const resultJson = await response.json()
+      localStorage.setItem('isAuthorized', true);
+      localStorage.setItem('userId', resultJson.id);
       window.location.href = '/';
     } else {
       showError('Неверный пароль или логин');
