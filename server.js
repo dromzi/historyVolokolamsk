@@ -21,6 +21,7 @@ const pool = mysql.createPool({
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.json()); 
 app.use(express.static(__dirname + '/public'));
+app.set("view engine", "ejs");
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -77,10 +78,42 @@ app.post('/auth', async (req, res) => {
         return res.status(400).send('Пользователь не найден'); 
     }
 });
+// app.get('/profile/:id', (req, res) => {
+
+//   res.sendFile(__dirname + '/public/profile/profile.html');
+
+// });
+
+
 app.get('/profile/:id', async (req, res) => {
 
-  // const userId = req.params.id;
+  const userId = req.params.id;
 
+  const [metadata, [user]] = await pool.query('SELECT * FROM users WHERE id = ?', [userId]);
+
+  const {FirstName, LastName} = user;
+
+  console.log(FirstName);
+  // console.log("Пользоваттель ");
+  // console.log(user[0][0]);
+  // console.log(user);
+  // const firstname = user[1][0].FirstName ;
+  // const lastname = user[1][0].LastName ;
+  // const img = user[1][0].imgUsers;  
+
+  res.render("profile", {
+    firstname: "firstname",
+    lastname: "lastname",
+    imgUsers: "img"
+  })
+
+  // res.status(200).json({
+  //   firstname: user[0][0].FirstName,
+  //   lastname: user[0][0].LastName,
+  //   imgUsers: user[0][0].imgUserss
+  // });
+
+});
   // const user = await pool.query('SELECT * FROM users WHERE id = ?', [userId]);
 
   // const html = fs.readFileSync(__dirname + '/profile.html', 'utf8');
@@ -94,8 +127,6 @@ app.get('/profile/:id', async (req, res) => {
 
 
   // res.send(html);
-
-});
 
 app.listen(port, () => {
     console.log(`Сервер запущен: http://localhost:${port}`);

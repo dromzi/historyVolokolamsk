@@ -7,7 +7,16 @@ btnLogout.onclick = function(){
 
 const userId = localStorage.getItem('userId');
 
-fetch(`/profile/${userId}`)
-.then(async response => {
+fetch('../profile/profile.html')
+  .then(res => res.text())
+  .then(html => {
+    document.documentElement.innerHTML = html;
 
-});
+    return fetch(`/profile/${userId}`);
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log(data);
+  });
+
+
