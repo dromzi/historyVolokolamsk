@@ -7,7 +7,7 @@ const pathname = window.location.pathname;
 
 const idUrl = pathname.split('/').pop();
 
-
+    
 const userId = localStorage.getItem('userId');
 const btnProfileAuth = document.querySelector('.header-login');
 const btnMobileProfileAuth = document.querySelector('.mobile-login')

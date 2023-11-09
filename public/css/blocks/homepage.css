@@ -226,6 +226,15 @@
     }
 }
 @media (max-width: 640px) {
+    .header{
+        height: 25vh;
+        background-size: cover;
+    }
+    @media (max-height: 800px) {
+        .header{
+         height: 200px;
+        }
+     }
 	.section__cards--6-in-row {
 		grid-template-columns: repeat(2, 1fr);
 	}
@@ -240,10 +249,7 @@
 		padding: 10px
 	}
 
-    .header{
-        height: 25vh;
-        background-size: cover;
-    }
+
     .container--header h1{
         font-size: clamp(15px, 7vw, 40px);
     }
@@ -269,9 +275,13 @@
 }
 
 @media (max-width: 440px) {
+
 	.section__cards--6-in-row {
 		grid-template-columns: repeat(1, 1fr);
 	}
-
-
 }
+@media (max-height: 800px) {
+    .header{
+     height: 350px;
+    }
+ }

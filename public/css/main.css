@@ -37,6 +37,13 @@ body a{
 	overflow: hidden;
 }
 
+.wrapper{
+display: table;
+width: 100%;
+text-align: center;
+font-size: 0;
+}
+
 @media (max-width: 1439px){
     .container{
         width: 100%;
