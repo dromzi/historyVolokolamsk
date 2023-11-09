@@ -84,11 +84,14 @@ app.get('/profile/:id', async(req, res) => {
 
   const userId = req.params.id;
   const user = await pool.query('SELECT * FROM users WHERE id = ?', [userId]);
-
+  let img = user[0][0].imgUsers
+  if (user[0][0].imgUsers == null) {
+    img = 'uploads/null.png'
+  }
   res.render("profile", {
     firstname: user[0][0].FirstName,
     lastname: user[0][0].LastName,
-    img : user[0][0].imgUsers
+    img : img
   })
 
 
