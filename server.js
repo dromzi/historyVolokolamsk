@@ -11,20 +11,20 @@ const { log } = require('console');
 const app = express();
 const port = 3003;
 
-// const pool = mysql.createPool({
-//     host: 'localhost',
-//     user: 'root',
-//     password: '123123123',
-//     database: 'datausers'
-// });
-
-
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '123123',
+    password: '123123123',
     database: 'datausers'
 });
+
+
+// const pool = mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '123123',
+//     database: 'datausers'
+// });
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.json()); 
