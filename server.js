@@ -51,6 +51,12 @@ app.post('/register', upload.single('image'), async (req, res) => {
 
     if (req.file) {
       imagePath = req.file.path;
+      const extname = path.extname(req.file.originalname);
+      const allowedExt = ['.jpg', '.jpeg', '.png', '.webp'];
+
+    if (!allowedExt.includes(extname)) {
+      return res.status(400).send('Недопустимый формат файла');
+    }
     } 
 
 	let length;
