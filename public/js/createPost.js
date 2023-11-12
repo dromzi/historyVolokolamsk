@@ -14,25 +14,21 @@ btnSubmit.addEventListener('click', async () =>{
     const userId = localStorage.getItem('userId');
     const title = titlePost.value;
     let text = tinymce.get('default').getContent();
-    console.log(title);
-    console.log(text);
-    console.log(userId);
-    const formData = new FormData();
     const imgPost = inputFile.files[0] ? inputFile.files[0] : "img/userimage.png"
+    // console.log(title);
+    // console.log(text);
+    // console.log(userId);
+    // console.log(imgPost);
+    const formData = new FormData();
     formData.append('title', title);
     formData.append('text', text);
     formData.append('userId', userId);
     formData.append('imgPost', imgPost);
 
-    // formData.append('title', title);
-    // formData.append('text', text);
-    // formData.append('lastname', lastname);
-    // formData.append('login', login);
-    // formData.append('password', password);
 
     const response = await fetch('/createPost', {
         method: 'POST',
-        body: formData 
+        body: formData
     });
     if(response.ok) {
         window.location.href = '/';
