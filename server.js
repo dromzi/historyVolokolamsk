@@ -34,38 +34,12 @@ app.use('/imgpost', express.static('imgpost'));
 
 app.set("view engine", "ejs");
 
-const storageImgPost = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, 'imgpost/')
-  },
-  filename: function(req, file, cb) {
-    cb(null, uuid() + path.extname(file.originalname))
-  }
-});
-
-const uploadImgPist = multer({ storage: storageImgPost});
-
-app.post('/createPost', uploadImgPist.single('imgpost'), async (req, res) => {
-
-  const { title, text, userId} = req.body;
-  let imagePath;
-
-  if (req.file) {
-    imagePath = req.file;
-    const extname = path.extname(req.file.originalname);
-    const allowedExt = ['.jpg', '.jpeg', '.png', '.webp'];
-
-  if (!allowedExt.includes(extname)) {
-    return res.status(400).send('Недопустимый формат файла');
-  }
-  } 
-  console.log(title);
-  console.log(text);
-  console.log(userId);
-  // console.log(imagePath.path);
-  // await pool.query('INSERT INTO postModeration (id_user, title, text, imgPost) VALUES (?, ?, ?, ?)',[userId, title, text, imagePath.path]);
-  // res.status(200).send('Пост создан');
-
+app.post('/createPost', async (req, res) => {
+    const { title, text, userId, imgPost} = await req.body;
+    console.log(title);
+    console.log(text);
+    console.log(userId);
+    console.log(imgPost);
 })
 
 
