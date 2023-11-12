@@ -30,7 +30,40 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.json()); 
 app.use(express.static(__dirname + '/public'));
 app.use('/uploads', express.static('uploads'));
+app.use('/imgPost', express.static('imgPost'));
+
 app.set("view engine", "ejs");
+
+const storageImgPost = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'imgPost/')
+  },
+  filename: function(req, file, cb) {
+    cb(null, uuid() + path.extname(file.originalname))
+  }
+});
+
+const uploadImgPist = multer({ storageImgPost });
+
+app.post('/createPost', uploadImgPist.single('image'), async (req, res) => {
+
+  const { title, text, userId} = req.body;
+  let imagePath;
+
+  if (req.file) {
+    imagePath = req.file.path;
+    const extname = path.extname(req.file.originalname);
+    const allowedExt = ['.jpg', '.jpeg', '.png', '.webp'];
+
+    if (!allowedExt.includes(extname)) {
+      return res.status(400).send('Недопустимый формат файла');
+    }
+  } 
+  await pool.query('INSERT INTO postModeration (id_user, title, text, imgPost) VALUES (?, ?, ?, ?)',[userId, title, text, imagePath]);
+  res.status(200).send('Пост создан');
+
+})
+
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -107,9 +140,8 @@ app.get('/profile/:id', async(req, res) => {
     lastname: user[0][0].LastName,
     img : img
   })
-
-
 });
+
 
 app.listen(port, () => {
     console.log(`Сервер запущен: http://localhost:${port}`);
