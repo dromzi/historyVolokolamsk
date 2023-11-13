@@ -17,6 +17,9 @@ const pool = mysql.createPool({
     password: '123123123',
     database: 'datausers'
 });
+app.use(express.static(__dirname + '/public'));
+app.use(express.json()); 
+app.use(express.json({extended: true}))
 
 
 // const pool = mysql.createPool({
@@ -25,21 +28,30 @@ const pool = mysql.createPool({
 //     password: '123123',
 //     database: 'datausers'
 // });
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true })); 
 
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.json()); 
-app.use(express.static(__dirname + '/public'));
+// app.use(bodyParser.urlencoded({extended: false}));
+
 app.use('/uploads', express.static('uploads'));
 app.use('/imgpost', express.static('imgpost'));
 
 app.set("view engine", "ejs");
 
-app.post('/createPost', async (req, res) => {
-    const { title, text, userId, imgPost} = await req.body;
-    console.log(title);
-    console.log(text);
-    console.log(userId);
-    console.log(imgPost);
+const storagePost = multer.diskStorage({
+  destination(req, file, cb){
+    cb(null, 'imgpost')
+  },
+  filename(req, file, cb){
+    cb(null, Date.now() + path.extname(file.originalname))
+  }
+})
+const imgpost = multer({storage: storagePost})
+
+app.post('/createPost', imgpost.single("image"), async (req, res) => {
+    const { title, text, userId, imgPost} = req.body;
+    console.log(title, text, userId, imgPost);
+    res.status(200).send('Пользователь зарегистрирован');
 })
 
 
@@ -51,6 +63,8 @@ const storage = multer.diskStorage({
       cb(null, uuid() + path.extname(file.originalname))
     }
 });
+
+
 
 const upload = multer({ storage });
 

@@ -50,19 +50,21 @@
         </div>
     </div>
     <section class="container">
-        <div class="title">
-            <input type="text" placeholder="Заголовок поста..." name="titlePost" class="titlePost" required>
-            <label for="titlePost" class="labelTitle"></label>
-        </div>
-        <textarea id="default"></textarea>
-        <div class="btns">
-            <label for="input-file" class="btnImg">Загрузите картинку</label>
-            <input type="file" accept="image/jpeg, image/png, image/jpg, image/webp" id="input-file" name="image">
-            <button class="btnSubmit">Опубликовать</button>
-        </div>
-        <div class="img_user">
-            <img src="../img/userImage.png" alt="" class="profile-pic">
-        </div>
+        <form action="/createPost" method="POST" enctype="multipart/form-data">
+            <div class="title">
+                <input type="text" placeholder="Заголовок поста..." name="titlePost" class="titlePost" required>
+                <label for="titlePost" class="labelTitle"></label>
+            </div>
+            <textarea id="default"></textarea>
+            <div class="btns">
+                <label for="input-file" class="btnImg">Загрузите картинку</label>
+                <input type="file" accept="image/jpeg, image/png, image/jpg, image/webp" id="input-file" name="image">
+                <button class="btnSubmit" type="submit">Опубликовать</button>
+            </div>
+            <div class="img_user">
+                <img src="../img/userImage.png" alt="" class="profile-pic">
+            </div>
+        </form>
     </section>
 
     <script>
@@ -77,7 +79,7 @@
     </script>
     <script src="https://kit.fontawesome.com/c63fee7330.js" crossorigin="anonymous"></script>
     <script src="../js/mobileNavbar.js"></script>
-    <script src="../js/main.js"></script>
     <script src="../js/createPost.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>
