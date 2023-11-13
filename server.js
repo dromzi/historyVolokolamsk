@@ -5,6 +5,7 @@ const multer = require('multer');
 const uuid = require('uuid').v4;
 const path = require('path');
 const bcrypt = require('bcrypt');
+const formidable = require('formidable')
 const fs = require('fs');
 const { log } = require('console');
 
@@ -39,21 +40,42 @@ app.use('/imgpost', express.static('imgpost'));
 app.set("view engine", "ejs");
 
 const storagePost = multer.diskStorage({
-  destination(req, file, cb){
+  destination: function(req, file, cb){
     cb(null, 'imgpost')
   },
-  filename(req, file, cb){
-    cb(null, Date.now() + path.extname(file.originalname))
+  filename: function(req, file, cb){
+    cb(null, uuid() + path.extname(file.originalname))
   }
 })
 const imgpost = multer({storage: storagePost})
 
-app.post('/createPost', imgpost.single("image"), async (req, res) => {
-    const { title, text, userId, imgPost} = req.body;
-    console.log(title, text, userId, imgPost);
+app.post('/createPost', imgpost.single('image'), async (req, res) => {
+    const { title, text, userId} = req.body;
+    let imagePath;
+    if (req.file) {
+      imagePath = req.file.path;
+      const extname = path.extname(req.file.originalname);
+      const allowedExt = ['.jpg', '.jpeg', '.png', '.webp'];
+
+      if (!allowedExt.includes(extname)) {
+        return res.status(400).send('Недопустимый формат файла');
+      }
+    } 
+    if (userId == 'null') {
+      return res.status(409).send('Пользователь не авторизован'); 
+    }
+    console.log(title, text, userId, imagePath);    
+    
+    let length;
+    await pool.query('select * from postModeration where title = ?', [title]).then(result => {
+      length = result[0].length;
+    })
+    if(length != 0){
+      return res.status(409).send('Заголовок занят'); 
+    }
+    await pool.query('INSERT INTO postModeration (id_user, title, text, imgPost) VALUES (?, ?, ?, ?)',[userId, title, text, imagePath]);
     res.status(200).send('Пользователь зарегистрирован');
 })
-
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -64,8 +86,6 @@ const storage = multer.diskStorage({
     }
 });
 
-
-
 const upload = multer({ storage });
 
 app.post('/register', upload.single('image'), async (req, res) => {
@@ -73,7 +93,6 @@ app.post('/register', upload.single('image'), async (req, res) => {
     const { login, password, firstname, lastname } = req.body;
     const hash = await bcrypt.hash(password, 10);  
     let imagePath;
-
     if (req.file) {
       imagePath = req.file.path;
       const extname = path.extname(req.file.originalname);
@@ -83,7 +102,11 @@ app.post('/register', upload.single('image'), async (req, res) => {
       return res.status(400).send('Недопустимый формат файла');
     }
     } 
+    // console.log(login, password, firstname, lastname, req.file);
+    // res.status(200).send('Пост создан');
+    // console.log(login, password, firstname, lastname, req.file);
 
+    
 	let length;
 	await pool.query('select * from users where login = ?', [login]).then(result => {
 		length = result[0].length;

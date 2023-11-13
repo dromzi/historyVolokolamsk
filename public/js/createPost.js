@@ -18,6 +18,36 @@ form.addEventListener('submit', async event => {
     const title = titlePost.value;
     let text = tinymce.get('default').getContent();
     const imgPost = inputFile.files[0] ? inputFile.files[0] : "img/userimage.png"
+
+    const formData = new FormData();
+
+    formData.append('title', title);
+    formData.append('text', text);
+    formData.append('userId', userId);
+    formData.append('image', imgPost);
+
+
+    const response = await fetch('/createPost', {
+        method: 'POST',
+        body: formData 
+        // headers: {
+        //   'Content-Type': 'application/json'
+        // },
+        // body: JSON.stringify({
+        //   title,
+        //   text,
+        //   userId,
+        //   imgPost
+        // })
+      });
+      
+    if(response.ok) {
+        window.location.href = '/';
+    } else {
+        form.innerHTML = "Ошибка"
+    }
+});
+
     // console.log(title);
     // console.log(text);
     // console.log(userId);
@@ -44,24 +74,10 @@ form.addEventListener('submit', async event => {
     //     form.innerHTML = "Ошибка"
     // }
 
+    // const formData = new FormData();
 
+    // formData.append('image', imgPost);
+    // formData.append('title', title);
+    // formData.append('text', text);
+    // formData.append('userId', userId);
 
-    const response = await fetch('/createPost', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          title,
-          text,
-          userId,
-          imgPost
-        })
-      })
-      
-    if(response.ok) {
-        window.location.href = '/';
-    } else {
-        form.innerHTML = "Ошибка"
-    }
-});
