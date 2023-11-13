@@ -30,54 +30,10 @@ form.addEventListener('submit', async event => {
     const response = await fetch('/createPost', {
         method: 'POST',
         body: formData 
-        // headers: {
-        //   'Content-Type': 'application/json'
-        // },
-        // body: JSON.stringify({
-        //   title,
-        //   text,
-        //   userId,
-        //   imgPost
-        // })
       });
-      
     if(response.ok) {
         window.location.href = '/';
     } else {
         form.innerHTML = "Ошибка"
     }
 });
-
-    // console.log(title);
-    // console.log(text);
-    // console.log(userId);
-    // console.log(imgPost);
-    // const formData = new FormData();
-    // formData.append('title', title);
-    // formData.append('text', text);
-    // formData.append('userId', userId);
-    // formData.append('imgPost', imgPost);
-
-    // const formData = new FormData();
-
-    // formData.append('title', title);
-    // formData.append('text', text);
-    // formData.append('userId', userId);
-    // formData.append('imgPost', imgPost);
-    // const response = await fetch('/createPost', {
-    //     method: 'POST',
-    //     body: formData 
-    // });
-    // if(response.ok) {
-    //     window.location.href = '/';
-    // } else {
-    //     form.innerHTML = "Ошибка"
-    // }
-
-    // const formData = new FormData();
-
-    // formData.append('image', imgPost);
-    // formData.append('title', title);
-    // formData.append('text', text);
-    // formData.append('userId', userId);
-
