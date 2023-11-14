@@ -61,6 +61,8 @@
     justify-content: space-between;
 }
 .img_user{
+    height: 400px;
+    width: 100%;
     margin-top: 25px;
     display: flex;
     flex-direction: column;
@@ -69,7 +71,7 @@
     margin-bottom: 15px;
 }
 .profile-pic{
-    display: none;
+    display: block;
     width: 100%;
     height: 400px;
     object-fit: cover;
