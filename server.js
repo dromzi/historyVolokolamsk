@@ -156,7 +156,46 @@ app.get('/profile/:id', async(req, res) => {
     img : img
   })
 });
+app.get('/post/:id', async(req, res) => {
 
+  const postId = req.params.id;
+  const post = await pool.query('SELECT * FROM postModeration WHERE id = ?', [postId]);
+  let img = post[0][0].imgPost
+  if (post[0][0].imgPost == null) {
+    img = 'imgpost/null.jpg'
+  } else{
+    img = img.replace(/\\/g, '/');
+
+  }
+
+  res.render("post", {
+    title: post[0][0].title,
+    text: post[0][0].text,
+    img : img
+  })
+});
+
+app.get('/html/posts', async(req, res) => {
+  const [rows] = await pool.query('SELECT * FROM postModeration');
+  rows.forEach(post => {
+    if (!post.imgPost) {
+      post.imgPost = 'imgpost/null.jpg';
+    }
+  })
+  rows.forEach(post => {
+    post.shortText = post.text.match(/.{1,30}(\s|$)/g).join(' ');
+    post.shortTitle = post.title.match(/.{1,30}(\s|$)/g).join(' ');
+    let truncatedText = post.shortText.substring(0, 290);
+    if (post.shortText.length > 290) {
+
+      // Добавляем многоточие
+      truncatedText += '...';
+    
+    }
+    post.shortText = truncatedText; 
+  });
+  res.render("posts", {posts: rows})
+});
 
 app.listen(port, () => {
     console.log(`Сервер запущен: http://localhost:${port}`);

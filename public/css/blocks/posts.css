@@ -1,0 +1,110 @@
+.header{
+    height: 41vh;
+	color: #fff;
+    background: linear-gradient( rgba(0, 0, 0, 0.555), #14181A ), url(../../img/fon.jpg);
+	background-size: cover;
+    background-position: center;
+}
+
+.container--header {
+	height: 100%;
+	display: flex;
+    justify-content: flex-start;
+    align-items: center;
+	flex-direction: column;
+}
+.container--header h1{
+    margin-top: 50px;
+    font-size: 40px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.952);
+
+}
+.section__cards {
+    display: grid;
+    gap: 32px;
+}
+.section__cards--2-in-row {
+    grid-template-columns: repeat(2, 1fr);
+}
+.card {
+    position: relative;
+    transition: filter .2s ease, transform .2s ease;
+}
+.card:hover , .card--wide:hover{
+    transform: scale(95%);
+    filter: brightness(50%);
+}
+.card--wide {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+.card__link {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.card__link:hover{
+    filter: brightness(50%);
+}
+.card__img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    object-fit: cover;
+    height: 80%;
+    
+}
+.card__img:hover{
+    filter: brightness(50%);
+    
+}
+.card__img--no-margin {
+    margin: 0;
+}
+.card__img--h100 {
+    height: 100%;
+}
+.card__desc {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 16px;
+}
+.card__title--big {
+    color: #fff;
+    font-weight: 600;
+    font-size: 20px;
+}
+.card__text {
+    color: #c4c4c4;
+    font-size: 16px;
+    line-height: 2;
+}
+.card__footer--wide {
+    margin-top: auto;
+}
+
+.card__footer-link {
+    position: relative;
+    z-index: 1;
+    font-size: 12px;
+    color: #ddc9c9;
+
+    padding-left: 20px;
+    background-repeat: no-repeat;
+    background-position: 0px 1px;
+}
+
+.card__footer-link:hover {
+    color: #7B61FF;
+}
+.createPost{
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: green;
+    border-radius: 15px;
+}

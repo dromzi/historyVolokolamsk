@@ -56,42 +56,17 @@
     
     <section class="container main">
         <div class="section__cards section__cards--2-in-row">
- 
-            <article class="card card--wide">
-                <a href="#!" class="card__link"></a>
-                <img class="card__img card__img--no-margin card__img--h100" src="./img/post1.jpeg" alt="Img">
-
-                <div class="card__desc">
-                    <h3 class="card__title card__title--big">Историческая справка</h3>
-                    <p class="card__text">Волоколамский край – уникальное место Подмосковья , где тесно сплетены между собой исторические вехи и памятные события родной земли...</p>
-
-                    <footer class="card__footer card__footer--wide">
-                       
-                        <a href="#author" class="card__footer-link card__footer-link--author">Maria Philips</a>
-                        
-                    </footer>
-                </div>
-
-            </article>
-
-            <article class="card card--wide">
-                <a href="#!" class="card__link"></a>
-                <img class="card__img card__img--no-margin card__img--h100" src="./img/post2.jpg" alt="Img">
-
-                <div class="card__desc">
-                    <h3 class="card__title card__title--big">Волоколамск - самый древний город Подмосковья</h3>
-                    <p class="card__text">Расположенный на западе Московской области Волоколамск не является самым туристическим городом региона да и война сильно сказалась на его облике. Однако даже после этого ему каким-то необъяснимым образом удалось сохранить и поддерживать свой колорит...</p>
-
-                    <footer class="card__footer card__footer--wide">
-                        
-                        <a href="#author" class="card__footer-link card__footer-link--author">Maria Philips</a>
-                        
-                    </footer>
-                </div>
-
-            </article>
-
-
+            <% posts.forEach(function(post) { %>
+                <article class="card card--wide">
+                    <a href="../post/<%= post.Id %>" class="card__link"></a>
+                    <img class="card__img card__img--no-margin card__img--h100" src="../<%= post.imgPost %>" alt="Img">
+    
+                    <div class="card__desc">
+                        <h3 class="card__title card__title--big"><%= post.shortTitle %></h3>
+                        <p class="card__text"><%- post.shortText %></p>
+                    </div>
+                </article>
+              <% }); %>
         </div>
     </section>
 
