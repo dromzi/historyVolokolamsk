@@ -30,6 +30,14 @@
                 </button>
             </div>
         </div>
+        <div class="container container--header">
+
+            
+          <h1>Галерея</h1>
+         
+
+           
+       </div>
     </header>
     <div class="mobile-nav">
         <a href="../index.html"><img class="mobile-logo" src="../img/logo.png" alt="logo"></a>
@@ -45,57 +53,58 @@
             <a href="auth.html" class="btn">Войти</i></a>
         </div>
     </div>
-    <section class="gallery">
-        <h2 class="title">Gallery</h2>
-        <div class="gallery-list">
-          <a href="../img/imenie-n.i.-goncharovoy.jpg" class="gallery-item">
-            <div class="gallery-item-hover">Посмотреть</div>
-            <img src="../img/imenie-n.i.-goncharovoy.jpg" alt="alt">
-          </a>
-          <a href="../img/kreml.jpg" class="gallery-item">
-            <div class="gallery-item-hover">Посмотреть</div>
-            <img src="../img/kreml.jpg" alt="alt">
-          </a>
-          <a href="./img/memorial-panfilovtsam.jpg" class="gallery-item">
-            <div class="gallery-item-hover">Посмотреть</div>
-            <img src="../img/memorial-panfilovtsam.jpg" alt="alt">
-          </a>
-          <a href="../img/ostashevo.jpg" class="gallery-item">
-            <div class="gallery-item-hover">Посмотреть</div>
-            <img src="../img/ostashevo.jpg" alt="alt">
-          </a>
-          <a href="../img/pamyatnik-geroyam-saperam.jpg" class="gallery-item">
-            <div class="gallery-item-hover">Посмотреть</div>
-            <img src="../img/pamyatnik-geroyam-saperam.jpg" alt="alt">
-          </a>
-          <a href="../img/raceway.jpg" class="gallery-item">
-            <div class="gallery-item-hover">Посмотреть</div>
-            <img src="../img/raceway.jpg" alt="alt">
-          </a>
-          <a href="../img/stella-gorod-voinskoy-slavy-.jpg" class="gallery-item">
-            <div class="gallery-item-hover">Посмотреть</div>
-            <img src="../img/stella-gorod-voinskoy-slavy-.jpg" alt="alt">
-          </a>
-          <a href="../img/cerkov.jpg" class="gallery-item">
-            <div class="gallery-item-hover">Посмотреть</div>
-            <img src="../img/cerkov.jpg" alt="alt">
-          </a>
-        </div>
-      </section>
-    
-    
-      <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-        crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
-      <script>
-        $(".gallery-list").magnificPopup({
-          delegate: "a",
-          type: "image",
-          gallery: {
-            enabled: true
+    <div class="container">
+
+      
+
+     <div class="img-container">
+      <div class="img">
+          <img src="../img/memorial-panfilovtsam.jpg">
+      </div>
+
+      <div class="img">
+          <img src="../img/ostashevo.jpg">
+      </div>
+
+      <div class="img">
+          <img src="../img/__FAPMSDzAA.jpg">
+      </div>
+
+      <div class="img">
+          <img src="../img/raceway.jpg">
+      </div>
+
+      <div class="img">
+          <img src="../img/imenie-n.i.-goncharovoy.jpg">
+      </div>
+
+      <div class="img">
+          <img src="../img/hram.jpg">
+      </div>
+     
+     </div>
+
+     <div class="pop-up">
+      <span>&times;</span>
+      <img src="../img/krestick.png" alt="">
+     </div>
+
+  </div>
+  
+  <script>
+
+      document.querySelectorAll('.img-container img').forEach(img =>{
+          img.onclick = () => {
+              document.querySelector('.pop-up').style.display = 'block';
+              document.querySelector('.pop-up img').src = img.getAttribute('src');
           }
-        });
-      </script>
+      });
+
+      document.querySelector('.pop-up span').onclick = () => {
+          document.querySelector('.pop-up').style.display = 'none'; 
+      }
+
+  </script>
     
     <script src="https://kit.fontawesome.com/c63fee7330.js" crossorigin="anonymous"></script>
     <script src="../js/mobileNavbar.js"></script>
