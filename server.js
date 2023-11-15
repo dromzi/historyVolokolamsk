@@ -5,32 +5,77 @@ const multer = require('multer');
 const uuid = require('uuid').v4;
 const path = require('path');
 const bcrypt = require('bcrypt');
+const formidable = require('formidable')
 const fs = require('fs');
 const { log } = require('console');
 
 const app = express();
 const port = 3003;
 
-// const pool = mysql.createPool({
-//     host: 'localhost',
-//     user: 'root',
-//     password: '123123123',
-//     database: 'datausers'
-// });
-
-
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: '123123',
+    password: '123123123',
     database: 'datausers'
 });
-
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.json()); 
 app.use(express.static(__dirname + '/public'));
+app.use(express.json()); 
+app.use(express.json({extended: true}))
+
+
+// const pool = mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '123123',
+//     database: 'datausers'
+// });
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true })); 
+
+// app.use(bodyParser.urlencoded({extended: false}));
+
 app.use('/uploads', express.static('uploads'));
+app.use('/imgpost', express.static('imgpost'));
+
 app.set("view engine", "ejs");
+
+const storagePost = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null, 'imgpost')
+  },
+  filename: function(req, file, cb){
+    cb(null, uuid() + path.extname(file.originalname))
+  }
+})
+const imgpost = multer({storage: storagePost})
+
+app.post('/createPost', imgpost.single('image'), async (req, res) => {
+    const { title, text, userId} = req.body;
+    let imagePath;
+    if (req.file) {
+      imagePath = req.file.path;
+      const extname = path.extname(req.file.originalname);
+      const allowedExt = ['.jpg', '.jpeg', '.png', '.webp'];
+
+      if (!allowedExt.includes(extname)) {
+        return res.status(400).send('Недопустимый формат файла');
+      }
+    } 
+    if (userId == 'null') {
+      return res.status(409).send('Пользователь не авторизован'); 
+    }
+    console.log(title, text, userId, imagePath);    
+    
+    let length;
+    await pool.query('select * from postModeration where title = ?', [title]).then(result => {
+      length = result[0].length;
+    })
+    if(length != 0){
+      return res.status(409).send('Заголовок занят'); 
+    }
+    await pool.query('INSERT INTO postModeration (id_user, title, text, imgPost) VALUES (?, ?, ?, ?)',[userId, title, text, imagePath]);
+    res.status(200).send('Пользователь зарегистрирован');
+})
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -48,11 +93,20 @@ app.post('/register', upload.single('image'), async (req, res) => {
     const { login, password, firstname, lastname } = req.body;
     const hash = await bcrypt.hash(password, 10);  
     let imagePath;
-
     if (req.file) {
       imagePath = req.file.path;
-    } 
+      const extname = path.extname(req.file.originalname);
+      const allowedExt = ['.jpg', '.jpeg', '.png', '.webp'];
 
+    if (!allowedExt.includes(extname)) {
+      return res.status(400).send('Недопустимый формат файла');
+    }
+    } 
+    // console.log(login, password, firstname, lastname, req.file);
+    // res.status(200).send('Пост создан');
+    // console.log(login, password, firstname, lastname, req.file);
+
+    
 	let length;
 	await pool.query('select * from users where login = ?', [login]).then(result => {
 		length = result[0].length;
@@ -101,8 +155,46 @@ app.get('/profile/:id', async(req, res) => {
     lastname: user[0][0].LastName,
     img : img
   })
+});
+app.get('/post/:id', async(req, res) => {
 
+  const postId = req.params.id;
+  const post = await pool.query('SELECT * FROM postModeration WHERE id = ?', [postId]);
+  let img = post[0][0].imgPost
+  if (post[0][0].imgPost == null) {
+    img = 'imgpost/null.jpg'
+  } else{
+    img = img.replace(/\\/g, '/');
 
+  }
+
+  res.render("post", {
+    title: post[0][0].title,
+    text: post[0][0].text,
+    img : img
+  })
+});
+
+app.get('/html/posts', async(req, res) => {
+  const [rows] = await pool.query('SELECT * FROM postModeration');
+  rows.forEach(post => {
+    if (!post.imgPost) {
+      post.imgPost = 'imgpost/null.jpg';
+    }
+  })
+  rows.forEach(post => {
+    post.shortText = post.text.match(/.{1,30}(\s|$)/g).join(' ');
+    post.shortTitle = post.title.match(/.{1,30}(\s|$)/g).join(' ');
+    let truncatedText = post.shortText.substring(0, 290);
+    if (post.shortText.length > 290) {
+
+      // Добавляем многоточие
+      truncatedText += '...';
+    
+    }
+    post.shortText = truncatedText; 
+  });
+  res.render("posts", {posts: rows})
 });
 
 app.listen(port, () => {

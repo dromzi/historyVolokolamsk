@@ -58,7 +58,6 @@ form.addEventListener('submit', async event => {
     }
 
     const imgUser = inputFile.files[0] ? inputFile.files[0] : "img/userimage.png"
-    
 
     const formData = new FormData();
 
