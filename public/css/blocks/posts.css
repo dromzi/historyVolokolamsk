@@ -4,6 +4,7 @@
     background: linear-gradient( rgba(0, 0, 0, 0.555), #14181A ), url(../../img/fon.jpg);
 	background-size: cover;
     background-position: center;
+    margin-bottom: 50px;
 }
 
 .container--header {
@@ -107,4 +108,94 @@
     padding: 10px 20px;
     background: green;
     border-radius: 15px;
+}
+@media (max-width: 1139px) {
+	.main {
+		row-gap: 60px;
+		padding-top: 0px;
+		padding-bottom: 40px;
+	}
+    .container--header{
+        justify-content: flex-start;
+    }
+	.section__header {
+		margin-bottom: 34px;
+	}
+
+	.title-1 {
+		font-size: 26px;
+	}
+
+	.section__cards--6-in-row {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.section__cards--4-in-row {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.card__text {
+		font-size: 14px;
+	}
+
+    .card__footer {
+		column-gap: 10px;
+	}
+}
+@media (max-width: 949px) {
+
+	.section__cards--2-in-row {
+		grid-template-columns: 1fr;
+	}
+    .container--header{
+        justify-content: flex-start;
+    }
+}
+@media (max-width: 640px) {
+    .header{
+        height: 25vh;
+        background-size: cover;
+    }
+    @media (max-height: 800px) {
+        .header{
+         height: 200px;
+        }
+     }
+	.section__cards--6-in-row {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.h2_sect1{
+		font-size: 15px !important;
+	}
+    .container--header h1{
+        margin-top: -20px;
+    }
+	.container{
+		width: 95%;
+		padding: 10px
+	}
+
+
+    .container--header h1{
+        font-size: clamp(15px, 7vw, 40px);
+    }
+    .container--header h3{
+        font-size: clamp(15px, 5vw, 20px);
+    }
+	.button-more{
+		padding: 20px 10px !important;
+		font-size: 13px;
+	}
+
+	.section__header h2{
+		font-size: 20px;
+	}
+	.section__cards--4-in-row {
+		grid-template-columns: repeat(1, 1fr);
+	}
+
+    .card--wide {
+        grid-template-columns: 1fr;
+    }
+
 }

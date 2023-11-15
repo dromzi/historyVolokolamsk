@@ -12,23 +12,23 @@ const { log } = require('console');
 const app = express();
 const port = 3003;
 
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '123123123',
-    database: 'datausers'
-});
+// const pool = mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '123123123',
+//     database: 'datausers'
+// });
 app.use(express.static(__dirname + '/public'));
 app.use(express.json()); 
 app.use(express.json({extended: true}))
 
 
-// const pool = mysql.createPool({
-//     host: 'localhost',
-//     user: 'root',
-//     password: '123123',
-//     database: 'datausers'
-// });
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: '123123',
+    database: 'datausers'
+});
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true })); 
 
