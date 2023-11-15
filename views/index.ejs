@@ -168,7 +168,26 @@
  
                  <div class="section__cards section__cards--2-in-row">
  
-                     <article class="card card--wide">
+                        <article class="card card--wide">
+                            <a href="../post/<%= posts[0].Id %>" class="card__link"></a>
+                            <img class="card__img card__img--no-margin card__img--h100" src="../<%= posts[0].imgPost %>" alt="Img">
+            
+                            <div class="card__desc">
+                                <h3 class="card__title card__title--big"><%= posts[0].title %></h3>
+                                <p class="card__text"><%- posts[0].text %></p>
+                            </div>
+                        </article>
+                        <article class="card card--wide">
+                            <a href="../post/<%= posts[1].Id %>" class="card__link"></a>
+                            <img class="card__img card__img--no-margin card__img--h100" src="../<%= posts[1].imgPost %>" alt="Img">
+            
+                            <div class="card__desc">
+                                <h3 class="card__title card__title--big"><%= posts[1].title %></h3>
+                                <p class="card__text"><%- posts[1].text %></p>
+                            </div>
+                        </article>
+
+                     <!-- <article class="card card--wide">
                          <a href="#!" class="card__link"></a>
                          <img class="card__img card__img--no-margin card__img--h100" src="./img/post1.jpeg" alt="Img">
  
@@ -200,7 +219,7 @@
                              </footer>
                          </div>
  
-                     </article>
+                     </article> -->
  
  
                  </div>

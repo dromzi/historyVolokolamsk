@@ -12,23 +12,23 @@ const { log } = require('console');
 const app = express();
 const port = 3003;
 
-// const pool = mysql.createPool({
-//     host: 'localhost',
-//     user: 'root',
-//     password: '123123123',
-//     database: 'datausers'
-// });
+const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: '123123123',
+    database: 'datausers'
+});
 app.use(express.static(__dirname + '/public'));
 app.use(express.json()); 
 app.use(express.json({extended: true}))
 
 
-const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '123123',
-    database: 'datausers'
-});
+// const pool = mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '123123',
+//     database: 'datausers'
+// });
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true })); 
 
@@ -174,9 +174,31 @@ app.get('/post/:id', async(req, res) => {
     img : img
   })
 });
+app.get('/', async(req, res) => {
+  const [rows] = await pool.query('  SELECT * FROM postModeration ORDER BY Id DESC');
+  rows.forEach(post => {
+    if (!post.imgPost) {
+      post.imgPost = 'imgpost/null.jpg';
+    }
+  })
+  rows.forEach(post => {
+    post.shortText = post.text.match(/.{1,30}(\s|$)/g).join(' ');
+    post.shortTitle = post.title.match(/.{1,30}(\s|$)/g).join(' ');
+    let truncatedText = post.shortText.substring(0, 290);
+    if (post.shortText.length > 290) {
+
+      // Добавляем многоточие
+      truncatedText += '...';
+    
+    }
+    post.shortText = truncatedText; 
+  });
+  res.render("index", {posts: rows})
+})
 
 app.get('/html/posts', async(req, res) => {
-  const [rows] = await pool.query('SELECT * FROM postModeration');
+const [rows] = await pool.query('  SELECT * FROM postModeration ORDER BY Id DESC');
+  // const [rows] = await pool.query('SELECT * FROM postModeration');
   rows.forEach(post => {
     if (!post.imgPost) {
       post.imgPost = 'imgpost/null.jpg';
