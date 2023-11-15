@@ -175,6 +175,12 @@ h1 {
       padding-left: 5px;
       padding-right: 5px;
   }
+  .container--header h1{
+    font-size: 35px;
+}
+.header{
+  height: 250px !important; 
+ }
   .container .img-container .img img{
     width: 330px;
     padding-left: 5px;

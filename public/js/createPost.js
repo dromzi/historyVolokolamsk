@@ -17,6 +17,9 @@ form.addEventListener('submit', async event => {
     const userId = localStorage.getItem('userId');
     const title = titlePost.value;
     let text = tinymce.get('default').getContent();
+    let originalText = tinymce.get('default').getContent({
+      format: "text"
+    });
     const imgPost = inputFile.files[0] ? inputFile.files[0] : "img/userimage.png"
 
     const formData = new FormData();
@@ -25,6 +28,8 @@ form.addEventListener('submit', async event => {
     formData.append('text', text);
     formData.append('userId', userId);
     formData.append('image', imgPost);
+    formData.append('originalText', originalText);
+
 
 
     const response = await fetch('/createPost', {

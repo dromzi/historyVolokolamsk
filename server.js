@@ -50,12 +50,12 @@ const storagePost = multer.diskStorage({
 const imgpost = multer({storage: storagePost})
 
 app.post('/createPost', imgpost.single('image'), async (req, res) => {
-    const { title, text, userId} = req.body;
+    const { title, text, originalText, userId} = await req.body;
     let imagePath;
     if (req.file) {
       imagePath = req.file.path;
       const extname = path.extname(req.file.originalname);
-      const allowedExt = ['.jpg', '.jpeg', '.png', '.webp'];
+      const allowedExt = ['.jpg', '.jpeg', '.png', '.webp', '.jfif'];
 
       if (!allowedExt.includes(extname)) {
         return res.status(400).send('Недопустимый формат файла');
@@ -64,16 +64,16 @@ app.post('/createPost', imgpost.single('image'), async (req, res) => {
     if (userId == 'null') {
       return res.status(409).send('Пользователь не авторизован'); 
     }
-    console.log(title, text, userId, imagePath);    
+    console.log(title, originalText, userId, imagePath);    
     
     let length;
-    await pool.query('select * from postModeration where title = ?', [title]).then(result => {
+    await pool.query('select * from dataPost where title = ?', [title]).then(result => {
       length = result[0].length;
     })
     if(length != 0){
       return res.status(409).send('Заголовок занят'); 
     }
-    await pool.query('INSERT INTO postModeration (id_user, title, text, imgPost) VALUES (?, ?, ?, ?)',[userId, title, text, imagePath]);
+    await pool.query('INSERT INTO dataPost (id_user, title, text, originalText, imgPost) VALUES (?, ?, ?, ?, ?)',[userId, title, text, originalText, imagePath]);
     res.status(200).send('Пользователь зарегистрирован');
 })
 
@@ -90,7 +90,7 @@ const upload = multer({ storage });
 
 app.post('/register', upload.single('image'), async (req, res) => {
 
-    const { login, password, firstname, lastname } = req.body;
+    const { login, password, firstname, lastname } = await req.body;
     const hash = await bcrypt.hash(password, 10);  
     let imagePath;
     if (req.file) {
@@ -145,21 +145,40 @@ app.post('/auth', async (req, res) => {
 app.get('/profile/:id', async(req, res) => {
 
   const userId = req.params.id;
+  const [post] = await pool.query('SELECT * FROM dataPost WHERE id_user = ?', [userId]);
   const user = await pool.query('SELECT * FROM users WHERE id = ?', [userId]);
-  let img = user[0][0].imgUsers
+  let img = user[0][0].imgUsers;
   if (user[0][0].imgUsers == null) {
     img = 'uploads/null.png'
-  }
+  };
+  post.forEach(post => {
+    if (!post.imgPost) {
+      post.imgPost = 'imgpost/null.jpg';
+    }
+  })
+  post.forEach(post => {
+    post.shortText = post.originalText.match(/.{1,30}(\s|$)/g).join(' ');
+    post.shortTitle = post.title.match(/.{1,30}(\s|$)/g).join(' ');
+    let truncatedText = post.shortText.substring(0, 290);
+    if (post.shortText.length > 290) {
+
+      // Добавляем многоточие
+      truncatedText += '...';
+    
+    }
+    post.shortText = truncatedText; 
+  });
   res.render("profile", {
     firstname: user[0][0].FirstName,
     lastname: user[0][0].LastName,
-    img : img
+    img : img,
+    posts: post
   })
 });
 app.get('/post/:id', async(req, res) => {
 
   const postId = req.params.id;
-  const post = await pool.query('SELECT * FROM postModeration WHERE id = ?', [postId]);
+  const post = await pool.query('SELECT * FROM dataPost WHERE id = ?', [postId]);
   let img = post[0][0].imgPost
   if (post[0][0].imgPost == null) {
     img = 'imgpost/null.jpg'
@@ -175,14 +194,14 @@ app.get('/post/:id', async(req, res) => {
   })
 });
 app.get('/', async(req, res) => {
-  const [rows] = await pool.query('  SELECT * FROM postModeration ORDER BY Id DESC');
+  const [rows] = await pool.query('  SELECT * FROM dataPost ORDER BY Id DESC');
   rows.forEach(post => {
     if (!post.imgPost) {
       post.imgPost = 'imgpost/null.jpg';
     }
   })
   rows.forEach(post => {
-    post.shortText = post.text.match(/.{1,30}(\s|$)/g).join(' ');
+    post.shortText = post.originalText.match(/.{1,30}(\s|$)/g).join(' ');
     post.shortTitle = post.title.match(/.{1,30}(\s|$)/g).join(' ');
     let truncatedText = post.shortText.substring(0, 290);
     if (post.shortText.length > 290) {
@@ -197,7 +216,7 @@ app.get('/', async(req, res) => {
 })
 
 app.get('/html/posts', async(req, res) => {
-const [rows] = await pool.query('  SELECT * FROM postModeration ORDER BY Id DESC');
+const [rows] = await pool.query('  SELECT * FROM dataPost ORDER BY Id DESC');
   // const [rows] = await pool.query('SELECT * FROM postModeration');
   rows.forEach(post => {
     if (!post.imgPost) {
@@ -205,7 +224,7 @@ const [rows] = await pool.query('  SELECT * FROM postModeration ORDER BY Id DESC
     }
   })
   rows.forEach(post => {
-    post.shortText = post.text.match(/.{1,30}(\s|$)/g).join(' ');
+    post.shortText = post.originalText.match(/.{1,30}(\s|$)/g).join(' ');
     post.shortTitle = post.title.match(/.{1,30}(\s|$)/g).join(' ');
     let truncatedText = post.shortText.substring(0, 290);
     if (post.shortText.length > 290) {
