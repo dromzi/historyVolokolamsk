@@ -236,23 +236,22 @@
                       </p>
             
                       <!-- Форма обратной связи -->
-                      <form action="#">
-            
+                      <form>
                         <!-- Каждый input для выравнивания вкладываем в блок input-box -->
                         <div class="input-box">
-                          <input type="text" placeholder="Ваше имя" />
+                          <input type="text" placeholder="Ваше имя" class="firstname_feedback" required/>
                         </div>
                         <div class="input-box">
-                          <input type="text" placeholder="Введите email" />
+                          <input type="text" placeholder="Введите email" class="email_feedback" required/>
                         </div>
                         <div class="input-box">
-                          <input type="text" placeholder="Введите телефон" />
+                          <input type="text" placeholder="Введите телефон" class="phone_feedback" required />
                         </div>
                         <div class="input-box message-box">
-                          <textarea placeholder="Сообщение"></textarea>
+                          <textarea placeholder="Сообщение" class="message_feedback" required></textarea>
                         </div>
                         <div class="button">
-                          <input type="button" value="Отправить" />
+                          <input type="submit" value="Отправить" />
                         </div>
                       </form>
                     </div>
@@ -266,5 +265,6 @@
     ></script>
     <script src="./js/mobileNavbar.js"></script>
     <script src="./js/main.js"></script>
+    <script src="./js/feedback.js"></script>
 </body>
 </html>

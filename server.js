@@ -252,7 +252,12 @@ app.post('/deletePost', async(req, res) => {
   const {idUrl} = req.body;
   await pool.query(`DELETE FROM dataPost WHERE id = ${idUrl}`);
   res.status(200).send('пост удален');
+})
 
+app.post('/createFeedback', async(req, res) => {
+  const {userId, firstname, email, phone, message} = req.body;
+  await pool.query('INSERT INTO dataFeedback (id_user, firstname, email, phone, message) VALUES (?, ?, ?, ?, ?)',[userId, firstname, email, phone, message]);
+  res.status(200).send('Форма отправлена');
 })
 
 app.use((req, res, next) => {

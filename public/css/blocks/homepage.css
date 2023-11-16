@@ -412,7 +412,7 @@
 }
 
 /* Стили для самой кнопки */
-.button input[type="button"] {
+.button input[type="submit"] {
   color: #fff;
   font-size: 18px;
   background: green;
@@ -424,7 +424,7 @@
 }
 
 /* Меняем цвет фона при наведении на кнопку */
-.button input[type="button"]:hover {
+.button input[type="submit"]:hover {
   filter: brightness(50%);
 }
 @media (max-width: 640px) {
