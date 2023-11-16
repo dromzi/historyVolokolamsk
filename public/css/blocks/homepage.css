@@ -298,3 +298,147 @@
      height: 350px;
     }
  }
+
+/* Стили самой формы */
+.content {
+  display: flex; /* делаем колонки в ряд */
+  align-items: center; /* выравниваем по центру */
+  justify-content: space-between; /* колонки растянутся на всю ширину */
+  /* background: rgb(29, 29, 29); */
+  padding: 40px;
+  border-radius: 5px;
+}
+
+/* Стили левой колонки */
+.left-side {
+  width: 25%; /* занимает 25% общей ширины */
+  height: 100%; /* растягиваем на всю высоту */
+  position: relative; /* позиционирование относительное (для ::before) */
+  display: flex;
+  flex-direction: column; /* внутри элементы располагаем в колонку */
+}
+
+/* Стили разделительной линии между левой и правой колонкой */
+.left-side::before {
+  content: ""; /* контент нам не нужен */
+  position: absolute; /* позиционируем относительно .left-side */
+  height: 70%; /* высота 70% от .left-side */
+  width: 2px; /* ширина 2px */
+  background: #afafb6;
+  right: -15px; /* позиционируем справа + отступ 15px (справа) */
+  top: 50%; /* выравниваем по центру */
+  transform: translateY(-50%); /* выравниваем по центру */
+}
+
+/* Стили правой колонки */
+.right-side {
+  width: 75%; /* занимает 75% общей ширины */
+  margin-left: 75px;
+}
+
+/* Элементы левой колонки: адрес, телефон, email */
+.details {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Общие стили для иконок */
+.details i {
+  font-size: 25px; /* задаем размер */
+  color: green; /* задаем цвет */
+  margin-bottom: 10px;
+}
+
+/* Стили для заголовков левой колонки */
+.topic {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 7px; /* отступ снизу 7px */
+}
+
+/* Стили для текста левой колонки */
+.text-one,
+.text-two {
+  font-size: 14px;
+  color: green;
+}
+
+/* Заголовок правой колонки */
+.topic-text {
+  font-size: 23px;
+  font-weight: 600;
+  color: #20934c;
+  margin-bottom: 10px;
+}
+
+/* Текст правой колонки */
+.right-side p {
+  margin-bottom: 20px;
+}
+
+/* Контейнер для input'ов формы */
+.input-box {
+  height: 50px; /* по сути задаем высоту input'а */
+  width: 100%; /* ширина на всю ширину правой колонки (с учетом padding) */
+  margin-bottom: 20px; /* отступаем снизу 20px */
+}
+
+/* Стили для input и textarea (поле сообщение) */
+.input-box input,
+.input-box textarea {
+  height: 100%; /* растягиваем на всю высоту контейнера 50px */
+  width: 100%; /* растягиваем на всю ширину */
+  border-bottom: 1px solid white; /* убираем внешние края */
+ /* скругляем края */
+  /* background: #f0f1f8; задаем цвет фона */
+  padding: 0 20px; /* отступ справа и слева 20px */
+}
+
+/* Отдельно стилизуем поле сообщение */
+.input-box textarea {
+  resize: none; /* чтобы нельзя было менять высоту */
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+/* Это контейнер для поля сообщение */
+.message-box {
+  min-height: 110px; /* минимальная высота 110px */
+}
+
+/* Стили для контейнера кнопки */
+.button {
+  display: inline-block; /* делаем блочно-строчный элемент */
+}
+
+/* Стили для самой кнопки */
+.button input[type="button"] {
+  color: #fff;
+  font-size: 18px;
+  background: green;
+  outline: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 7px;
+  transition: 0.2s; /* чтобы плавно менялся цвет при наведении (:hover) */
+}
+
+/* Меняем цвет фона при наведении на кнопку */
+.button input[type="button"]:hover {
+  filter: brightness(50%);
+}
+@media (max-width: 640px) {
+    .left-side{
+        display: none;
+    }
+    .content {
+        padding: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .right-side{
+        width: 90%;
+        margin-left: 0px;
+    }
+}

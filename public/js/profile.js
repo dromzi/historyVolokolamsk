@@ -1,6 +1,10 @@
 const btnLogout = document.querySelector(".btn");
+const btnLogoutMob = document.querySelector(".btn-mobile");
 
 btnLogout.onclick = function(){
+    localStorage.clear();
+}
+btnLogoutMob.onclick = function(){
     localStorage.clear();
 }
 const pathname = window.location.pathname; 
