@@ -55,7 +55,7 @@ app.post('/createPost', imgpost.single('image'), async (req, res) => {
     if (req.file) {
       imagePath = req.file.path;
       const extname = path.extname(req.file.originalname);
-      const allowedExt = ['.jpg', '.jpeg', '.png', '.webp', '.jfif'];
+      const allowedExt = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
 
       if (!allowedExt.includes(extname)) {
         return res.status(400).send('Недопустимый формат файла');
@@ -147,6 +147,9 @@ app.get('/profile/:id', async(req, res) => {
   const userId = req.params.id;
   const [post] = await pool.query('SELECT * FROM dataPost WHERE id_user = ?', [userId]);
   const user = await pool.query('SELECT * FROM users WHERE id = ?', [userId]);
+  if (user[0].length == 0) {
+    return res.redirect('/');
+  }
   let img = user[0][0].imgUsers;
   if (user[0][0].imgUsers == null) {
     img = 'uploads/null.png'
@@ -179,6 +182,9 @@ app.get('/post/:id', async(req, res) => {
 
   const postId = req.params.id;
   const post = await pool.query('SELECT * FROM dataPost WHERE id = ?', [postId]);
+  if (post[0].length == 0) {
+    return res.redirect('/');
+  }
   let img = post[0][0].imgPost
   if (post[0][0].imgPost == null) {
     img = 'imgpost/null.jpg'
@@ -188,6 +194,7 @@ app.get('/post/:id', async(req, res) => {
   }
 
   res.render("post", {
+    createUser_id : post[0][0].id_user,
     title: post[0][0].title,
     text: post[0][0].text,
     img : img
@@ -237,6 +244,13 @@ const [rows] = await pool.query('  SELECT * FROM dataPost ORDER BY Id DESC');
   });
   res.render("posts", {posts: rows})
 });
+
+app.post('/deletePost', async(req, res) => {
+  const {idUrl} = req.body;
+  await pool.query(`DELETE FROM dataPost WHERE id = ${idUrl}`);
+  res.status(200).send('пост удален');
+
+})
 
 app.listen(port, () => {
     console.log(`Сервер запущен: http://localhost:${port}`);
