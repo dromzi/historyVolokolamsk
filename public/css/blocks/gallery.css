@@ -1,13 +1,8 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body{
+body{
     position: relative;
     font-family: 'Montserrat', sans-serif;
   }
-  .main {
+.main {
     padding: 50px 0;
     display: grid;
     gap: 70px;
@@ -218,13 +213,13 @@ h1 {
 	width: 70rem;
 }
 
-.ul_gallery figure {
+figure {
 	margin: 0;
 	position: relative;
 	overflow: hidden;
 }
 
-.ul_gallery figure::after {
+ figure::after {
 	content: '';
 	position: absolute;
 	top: 50%;
@@ -238,7 +233,7 @@ h1 {
 	transition: opacity 300ms;
 }
 
-.ul_gallery figcaption {
+ figcaption {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -256,11 +251,11 @@ h1 {
 	transition: opacity 600ms, transform 600ms;
 }
 
-.ul_gallery a:is(:hover, :focus) figure::after {
+ a:is(:hover, :focus) figure::after {
 	opacity: 1;
 }
 
-.ul_gallery a:is(:hover, :focus) figcaption {
+ a:is(:hover, :focus) figcaption {
 	opacity: 1;
 	transition: opacity 600ms;
 }
@@ -290,4 +285,4 @@ h1 {
 	a:is(:hover, :focus) img {
 		transform: scale(1.2);
 	}
-}
+} 
