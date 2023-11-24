@@ -1,0 +1,4 @@
+System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
+path.AddEllipse(0, 0, 200, 200);
+Region rgn = new Region(path);
+this.pictureBox1.Region = rgn;
