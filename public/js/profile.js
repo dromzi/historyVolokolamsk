@@ -22,3 +22,4 @@ if (idUrl != userId) {
     btnProfileAuth.innerHTML = `<a href="./${userId}" class="btn" style="background: #1e9144">Профиль</a>`; 
     btnMobileProfileAuth.innerHTML = `<a href="./${userId}" class="btn" style="background: #1e9144">Профиль</a>`; 
 }
+
