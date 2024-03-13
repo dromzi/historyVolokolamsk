@@ -8,7 +8,6 @@ const bcrypt = require('bcrypt');
 const formidable = require('formidable')
 const fs = require('fs');
 const { log } = require('console');
-const jwt = require('jsonwebtoken');
 
 
 
